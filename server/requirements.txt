@@ -1,5 +1,6 @@
 fastapi
 uvicorn[standard]
+gunicorn
 pymongo
 python-dotenv
 passlib[bcrypt]==1.7.4
