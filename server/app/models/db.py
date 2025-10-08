@@ -9,8 +9,24 @@ from pymongo.errors import PyMongoError
 load_dotenv()
 
 MONGODB_URI = os.getenv("MONGODB_URI")
-client = MongoClient(MONGODB_URI)
-db = client.get_default_database()
+
+if not MONGODB_URI:
+    raise ValueError("MONGODB_URI environment variable is not set!")
+
+try:
+    client = MongoClient(
+        MONGODB_URI,
+        serverSelectionTimeoutMS=5000,  # 5 second timeout
+        connectTimeoutMS=10000,
+        socketTimeoutMS=10000,
+    )
+    # Test connection
+    client.admin.command('ping')
+    db = client.get_default_database()
+    print("✅ MongoDB connected successfully!")
+except Exception as e:
+    print(f"❌ MongoDB connection failed: {str(e)}")
+    raise
 
 users_collection: Collection = db["users"]
 leaves_collection: Collection = db["leave_requests"]
