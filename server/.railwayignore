@@ -1,0 +1,45 @@
+# Railway ignore file - don't upload these to Railway
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Development files
+*.md
+!RAILWAY_DEPLOYMENT.md
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node modules (if any)
+node_modules/
+package-lock.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+

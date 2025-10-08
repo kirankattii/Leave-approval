@@ -1,6 +1,6 @@
 # FastAPI Leave Application System - Backend
 
-This backend project provides a secure, high-performance leave application system using FastAPI, MongoDB, and AMP for Email. It is designed for easy deployment to Heroku.
+This backend project provides a secure, high-performance leave application system using FastAPI, MongoDB, and AMP for Email. It is designed for easy deployment to **Railway** (recommended) or Heroku.
 
 ## Features
 - Token-based authentication for employees and managers
@@ -81,7 +81,26 @@ uvicorn app.main:app --reload
 The API will be available at: `http://localhost:8000`
 Interactive API docs: `http://localhost:8000/docs`
 
-## Production Deployment (Heroku)
+## Production Deployment
+
+### 🚂 Railway (Recommended)
+
+**Quick Start:**
+See [QUICK_RAILWAY_SETUP.md](./QUICK_RAILWAY_SETUP.md) for step-by-step guide.
+
+**Or deploy now:**
+1. Push to GitHub
+2. Go to [railway.app](https://railway.app)
+3. New Project → Deploy from GitHub
+4. Set root directory: `server`
+5. Add environment variables (see QUICK_RAILWAY_SETUP.md)
+
+**Full Documentation:**
+See [RAILWAY_DEPLOYMENT.md](./RAILWAY_DEPLOYMENT.md) for complete guide.
+
+---
+
+### Heroku (Alternative)
 
 ### 1. Create Heroku App
 ```bash
@@ -139,11 +158,17 @@ server/
 │       ├── email.py        # Email sending utilities
 │       ├── tokens.py       # Token generation/verification
 │       └── templates/      # Email templates
-├── .env.example            # Environment variables template
-├── .gitignore             # Git ignore file
-├── requirements.txt       # Python dependencies
-├── Procfile              # Heroku deployment config
-└── README.md             # This file
+├── .env.example                # Environment variables template
+├── env.example                # Environment variables template
+├── .gitignore                 # Git ignore file
+├── .railwayignore            # Railway ignore file
+├── requirements.txt          # Python dependencies
+├── Procfile                  # Process file (Heroku/Railway)
+├── railway.toml              # Railway configuration
+├── nixpacks.toml             # Nixpacks build configuration
+├── README.md                 # This file
+├── QUICK_RAILWAY_SETUP.md   # Quick Railway deployment guide
+└── RAILWAY_DEPLOYMENT.md    # Complete Railway documentation
 ```
 
 ## Troubleshooting

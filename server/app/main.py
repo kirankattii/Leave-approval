@@ -9,7 +9,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-app = FastAPI(title="Leave Approval System API", version="1.0.0")
+app = FastAPI(
+    title="Leave Approval System API", 
+    version="1.0.0",
+    docs_url="/api/docs",
+    redoc_url="/api/redoc",
+    openapi_url="/api/openapi.json"
+)
 
 # AMP Email CORS Middleware
 @app.middleware("http")
@@ -100,7 +106,17 @@ def root():
     index_path = os.path.join(STATIC_CLIENT_DIR, "index.html")
     if os.path.isfile(index_path):
         return FileResponse(index_path)
-    return {"message": "Leave Application System API", "version": "1.0.0"}
+    return {
+        "message": "Leave Application System API", 
+        "version": "1.0.0",
+        "status": "running",
+        "docs": "/api/docs"
+    }
+
+@app.get("/health")
+def health_check():
+    """Health check endpoint for Railway and monitoring"""
+    return {"status": "healthy", "service": "leave-amp-api"}
 
 # SPA fallback for client-side routes
 @app.get("/{full_path:path}")
